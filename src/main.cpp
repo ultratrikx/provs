@@ -513,91 +513,35 @@ void skills() {
     // Start position: 0, 0, -40
     chassis.setPose(0, 0, 0);  // Move to (0, 0) with heading -40
 
-    // // Move to position 11.6, -15.5, -40 (arm down position)
-    // chassis.moveToPoint(-41, -38.8, 2000, {.forwards = false, .minSpeed = 78});
-    
-    // // Clamp the mobile goal
-    // clamp.set_value(true);
-    // pros::delay(500);
-    // clamp.set_value(false);
-
-
+   
     // // Move the arm with position control
     arm.move_absolute(450 * TICKS_PER_ARM_DEGREE, 90);
     pros::delay(2000);
 
-    // // Move to position 11.6, -15.5, -40 (arm down position)
-    // chassis.moveToPoint(17.1, -27.2, 2000, {.forwards = false, .minSpeed = 78});
-    
-    // // Clamp the mobile goal
-    // clamp.set_value(true);
-    // pros::delay(500);
-    // clamp.set_value(false);
-
-    // // Lower arm with position control
-    // arm.move_absolute(0, 90);
-    // pros::delay(1000);
-
-    // // Ensure arm stays at position 0 after movement
-    // arm.move_velocity(0);
-
-    // intake.move(127);
-    // hook.move(127);
-
-    // //arm.move_absolute(70 * TICKS_PER_ARM_DEGREE, 90);
-
-    // chassis.moveToPose(9.4, -46, -155.6, 3000, {.minSpeed = 70});
-
-    // pushPiston.set_value(true);
-    // pros::delay(500);
-
-    // intake.move(0);
-    // hook.move(0);
-
-
-    // //score wall stake
-    // chassis.moveToPose(-11.6, -64.0, 191.9,5000);
-    // pros::delay(500);
-
-    // pushPiston.set_value(false);
-    // pros::delay(500);
-    // arm.move_absolute(400*TICKS_PER_ARM_DEGREE, 90);
-
-
-
-    // chassis.moveToPose(-13, -37, -145, 3000, {.forwards = false, .minSpeed = 70});
-
-    // pros::delay(500);
-
-    // arm.move_absolute(0, 90);  
-
-    // intake.move(127);
-    // hook.move(127);
-
-    
-    // chassis.moveToPose(23.2, -57.8, -225.94, 4000, {.minSpeed = 70});
-
-    // chassis.moveToPose(20, -29.7, -81.30, 4000);
 
     pros::delay(500);
 
-    chassis.moveToPoint(-7, -34.3, 4000, {.forwards = false, .minSpeed = 115});
+    
+    arm.move(127);
+    pros::delay(1000);
+    arm.move(0);
+
+    chassis.moveToPoint(12, -26.1, 4000, {.forwards = false, .minSpeed = 115});
 
     // clamp.set_value(true);
     clamp.set_value(true);
     pros::delay(1500);
     clamp.set_value(false);
+    
 
     intake.move(127);
     hook.move(127);
 
-    chassis.moveToPose(-23, -34.3, 92, 4000, {.minSpeed = 70});
+    chassis.moveToPose(3.25, -43.9, 134.6, 4000, {.minSpeed = 70});
 
-    chassis.moveToPose(-20, -40, 92, 4000, {.minSpeed = 70});
-    chassis.moveToPose(-17, -40, 92, 4000, {.minSpeed = 70});
-
-    // arm.move_absolute(120, 90);
-    // chassis.moveToPose(-33.75, -15.55, -84.96, 2000);
+    chassis.moveToPose(10, -58, 225, 4000, {.minSpeed = 70});
+    chassis.moveToPose(11.8, -58, 203 , 4000, {.minSpeed = 70});
+    
     
 } 
 
@@ -707,8 +651,8 @@ void redRight(){
 
 void autonomous() {
     // skills();
-    redleft();
-    // blueLeft(); 
+    // redleft();
+    blueLeft(); // also red right 
     //blueRight();
 }
 
