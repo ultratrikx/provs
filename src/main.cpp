@@ -480,7 +480,9 @@ void skills() {
     pros::delay(500);
 
     
-    arm.move_absolute(0 * TICKS_PER_ARM_DEGREE, 90);
+    arm.move(127);
+    pros::delay(1000);
+    arm.move(0);
 
     chassis.moveToPoint(-12, -26.1, 4000, {.forwards = false, .minSpeed = 115});
 
@@ -489,16 +491,14 @@ void skills() {
     pros::delay(1500);
     clamp.set_value(false);
     
-    arm.move_absolute(120, 90);
-    chassis.moveToPose(-33.75, -15.55, -84.96, 2000);
 
     intake.move(127);
     hook.move(127);
 
     chassis.moveToPose(-3.25, -43.9, 134.6, 4000, {.minSpeed = 70});
 
-    chassis.moveToPose(-10, -52, 225, 4000, {.minSpeed = 70});
-    chassis.moveToPose(-11.8, -52, 203 , 4000, {.minSpeed = 70});
+    chassis.moveToPose(-10, -58, 225, 4000, {.minSpeed = 70});
+    chassis.moveToPose(-11.8, -58, 203 , 4000, {.minSpeed = 70});
     
 } 
 
