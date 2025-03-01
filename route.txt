@@ -1,0 +1,38 @@
+x, y, heading
+
+0,0,-40
+
+Arm down  
+11.6, -15.5, -40  
+████████ (scribbled out)  
+
+Clamp  
+
+Turn to  
+11.6, -15.5, -172  
+
+Move red one
+7.3, -29.2, -172  
+
+Move red 2 
+19.4, -84.6, -201  
+
+Get ready for high stakes (back)  
+11, -59, -201  
+
+Turn to stake  
+11, -59, -257.4  
+
+Move forward  
+26.7, -62.2, -257.4  
+
+Intake  
+
+Move wall  
+36.6, -64.6, -257.4  
+
+Arm up  
+Jitter forward and back  
+
+Final  
+23.8, -64.6, -257.4  
