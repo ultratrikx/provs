@@ -382,8 +382,8 @@ void skills() {
 
 
     // // Move the arm with position control
-    arm.move_absolute(450 * TICKS_PER_ARM_DEGREE, 90);
-    pros::delay(2000);
+    // arm.move_absolute(450 * TICKS_PER_ARM_DEGREE, 90);
+    // pros::delay(2000);
 
     // // Move to position 11.6, -15.5, -40 (arm down position)
     // chassis.moveToPoint(17.1, -27.2, 2000, {.forwards = false, .minSpeed = 78});
@@ -444,7 +444,7 @@ void skills() {
 
     // clamp.set_value(true);
     clamp.set_value(true);
-    pros::delay(1500);
+    pros::delay(2000);
     clamp.set_value(false);
 
     intake.move(127);
