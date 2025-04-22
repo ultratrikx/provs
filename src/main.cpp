@@ -557,8 +557,8 @@ void redRight(){
 
 
 void skills(){
-    red = true;
-    blue = false;
+    // red = true;
+    // blue = false;
     chassis.setPose(0, 0, 180);
 
     arm.move_velocity(200);
@@ -577,15 +577,15 @@ void skills(){
 
     chassis.turnToHeading(0, 1000);
 
-    spinTop = true;
-    spinBottom = true;
+    // spinTop = true;
+    // spinBottom = true;
     chassis.moveToPose(-20, 33, 0, 2000, {.maxSpeed = 50, .minSpeed = 30});
     chassis.turnToHeading(-45, 1000, {.maxSpeed = 50, .minSpeed = 30}, false);
     chassis.moveToPose(-43, 95, 0, 2500, {.maxSpeed = 70, .minSpeed = 30});
 
     pros::delay(1500);
-    hold = false;
-    prime = true;
+    // hold = false;
+    // prime = true;
 
     chassis.moveToPoint(-38, 65, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
 
@@ -593,18 +593,18 @@ void skills(){
     chassis.moveToPoint(-70, 65, 1500, {.maxSpeed = 50, .minSpeed = 30}, false);
     chassis.setPose(-64, 65, chassis.getPose().theta);
     pros::delay(100);
-    prime = false;
-    scoreStop = true;
-    spinTop = false;
+    // prime = false;
+    // scoreStop = true;
+    // spinTop = false;
 
-    score = true;
+    // score = true;
     pros::delay(1000);
-    scoreStop = false;
+    // scoreStop = false;
 
     chassis.moveToPoint(-55, 65, 2000, {.forwards = false, .maxSpeed = 60, .minSpeed = 50}, false);
-    score = false;
-    hold = true;
-    spinTop = true;
+    // score = false;
+    // hold = true;
+    // spinTop = true;
     chassis.moveToPoint(-55, 65, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
 
     chassis.turnToHeading(-180, 1000, {}, false);
@@ -614,7 +614,7 @@ void skills(){
     chassis.turnToHeading(20, 1000);
     chassis.moveToPoint(-75, -20, 700, {.forwards = false, .minSpeed = 40}, false);
 
-    reverse = true;
+    // reverse = true;
     clamp.set_value(false);
     pros::delay(200);
 
@@ -631,36 +631,36 @@ void skills(){
     pros::delay(200);
     chassis.turnToHeading(0, 1000, {.maxSpeed = 70, .minSpeed = 50});
 
-    reverse = false;
+    // reverse = false;
 
-    spinTop = true;
-    spinBottom = true;
+    // spinTop = true;
+    // spinBottom = true;
     
     chassis.moveToPose(30, 33, 0, 1500, {.maxSpeed = 70, .minSpeed = 50});
     chassis.turnToHeading(45, 1000, {.maxSpeed = 70, .minSpeed = 50}, false);
     chassis.moveToPose(55, 93, 0, 2000, {.maxSpeed = 70, .minSpeed = 50});
     pros::delay(1500);
-    hold = false;
-    prime = true;
+    // hold = false;
+    // prime = true;
 
     chassis.moveToPoint(50, 66, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
 
     chassis.turnToHeading(90, 1000, {}, false);
     chassis.moveToPoint(70, 66, 2000, {.maxSpeed = 50}, false);
 
-    prime = false;
-    scoreStop = true;
-    spinTop = false;
+    // prime = false;
+    // scoreStop = true;
+    // spinTop = false;
 
-    score = true;
+    // score = true;
     pros::delay(1000);
-    scoreStop = false;
+    // scoreStop = false;
 
     chassis.moveToPoint(55, 66, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
     // chassis.moveToPoint(52, 68, 1000, {}, false);
-    score = false;
-    hold = true;
-    spinTop = true;
+    // score = false;
+    // hold = true;
+    // spinTop = true;
 
     // chassis.moveToPoint(45, 65, 500);
 
@@ -671,7 +671,7 @@ void skills(){
     chassis.turnToHeading(-10, 1000);
     chassis.moveToPoint(100, -30, 700, {.forwards = false, .minSpeed = 40}, false);
 
-    reverse = true;
+    // reverse = true;
     pros::delay(100);
     clamp.set_value(false);
     pros::delay(200);
@@ -679,39 +679,39 @@ void skills(){
     //____
 
     chassis.setPose(91, -15, chassis.getPose().theta);
-    hold = true;
-    spinBottom = true;
-    spinTop = false;
+    // hold = true;
+    // spinBottom = true;
+    // spinTop = false;
     chassis.moveToPoint(70, 45, 1000);
-    reverse = false;
-    holdRing = true;
+    // reverse = false;
+    // holdRing = true;
     chassis.moveToPoint(42, 55, 1500);
 
     chassis.moveToPoint(38, 90, 1000);
     chassis.turnToHeading(90, 1000);
-    intakeRaise.set_value(true);
+    // intakeRaise.set_value(true);
     chassis.moveToPoint(83, 100, 2500, {.maxSpeed = 60, .minSpeed = 50});
 
     chassis.moveToPoint(18, 81, 2000, {.forwards = false, .maxSpeed = 60, .minSpeed = 30}, false);
     clamp.set_value(true);
-    holdRing = false;
+    // holdRing = false;
     pros::delay(200);
-    spinTop = true;
-    spinBottom = true;
+    // spinTop = true;
+    // spinBottom = true;
 
-    intakeRaise.set_value(false);
+    // intakeRaise.set_value(false);
 
     chassis.moveToPoint(80, 87, 3500, {.maxSpeed = 80, .minSpeed = 50}, false);
 
     chassis.moveToPose(40, 75, -40, 3000, {.forwards = false}, false);
 
     clamp.set_value(false);
-    intakeRaise.set_value(true);
+    // intakeRaise.set_value(true);
 
-    spinBottom = false;
-    spinTop = false;
+    // spinBottom = false;
+    // spinTop = false;
     chassis.moveToPoint(-34, 110, 2000, {.maxSpeed = 80, .minSpeed = 70}, false);
-    hold = false;
+    // hold = false;
 
     chassis.moveToPoint(91, -15, 5000, {.forwards = false, .maxSpeed = 60, .minSpeed = 60});
 
@@ -719,7 +719,7 @@ void skills(){
     arm.move_velocity(200);
     pros::delay(500);
     arm.move_velocity(0);
-    intakeRaise.set_value(false);
+    // intakeRaise.set_value(false);
     while(imu.get_roll() > -13 && imu.get_roll() < 13){
         pros::delay(20);
     }
