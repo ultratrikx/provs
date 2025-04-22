@@ -198,94 +198,6 @@ void hookControl(int speed, bool direction) {
 /**
  * Autonomous mode.
  */
-void skills() {
-    clamp.set_value(true);
-    
-    // Set arm brake mode to hold at the start
-    arm.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    arm.tare_position();
-    
-    // Start position: 0, 0, -40
-    chassis.setPose(0, 0, -40);  // Move to (0, 0) with heading -40
-
-    // Move the arm with position control
-    arm.move_absolute(400 * TICKS_PER_ARM_DEGREE, 90);
-    pros::delay(2000);
-
-    // Move to position 11.6, -15.5, -40 (arm down position)
-    chassis.moveToPoint(12, -16, 2000, {.forwards = false, .minSpeed = 78});
-    
-    // Clamp the mobile goal
-    clamp.set_value(true);
-    pros::delay(500);
-    clamp.set_value(false);
-
-    // Lower arm with position control
-    arm.move_absolute(0, 90);
-    pros::delay(1000);
-    // Ensure arm stays at position 0 after movement
-    arm.move_velocity(0);
-    
-    // Turn to 11.6, -15.5, -172 (align to the next target)
-    chassis.moveToPose(11.6, -15.5, -172, 2000, {.minSpeed = 125});
-    pros::delay(500);
-    
-    // Move to "Red 1" position (7.3, -29.2, -172)
-    chassis.moveToPose(7.3, -29.2, -172, 2000, {.minSpeed = 125});
-    intake.move(127);
-    hook.move(127); 
-    pros::delay(500);
-    
-    // Move to "Red 2" position (19.4, -84.6, -201)
-    chassis.moveToPose(22, -90, -201, 2000, {.minSpeed = 125});
-    intake.move(127);
-    hook.move(127);
-    pros::delay(500);
-    
-    // Get ready for high stakes (back): Move to (11, -59, -201)
-    chassis.moveToPose(11, -66, -201, 2000, {.forwards = false});
-    pros::delay(500);
-    
-    // Turn to stake position: (11, -59, -257.4)
-    chassis.moveToPose(11, -66, -257.4, 2000, {.minSpeed = 125});
-    
-    // Use position control for consistent arm height
-    arm.move_absolute(70 * TICKS_PER_ARM_DEGREE, 50);
-    pros::delay(500);
-
-    // Move forward to position (26.7, -62.2, -257.4)
-    chassis.moveToPose(26.7, -66, -257.4, 2000, {.minSpeed = 125});
-    
-    // Move to wall position: (36.6, -64.6, -257.4)
-    chassis.moveToPose(40, -66, -257.4, 2000, {.minSpeed = 125});
-    pros::delay(3000);
-    intake.move(0);
-    hook.move(0);
-    
-    // Activate pushPiston while maintaining arm position
-    pushPiston.set_value(true);  
-    pros::delay(1500);
-    intake.move(0);
-    hook.move(0);
-    
-    // Raise arm for  stake and ensure it maintains position
-    arm.move_absolute(400 * TICKS_PER_ARM_DEGREE, 50);
-    pros::delay(2000);
-
-    // Jitter forward and back (for stabilization)
-    chassis.moveToPoint(40, -66, 500, {.maxSpeed = 70});
-    chassis.moveToPoint(42, -66, 500, {.maxSpeed = 70});
-    chassis.moveToPoint(40, -66, 500, {.maxSpeed = 70});
-    chassis.moveToPoint(42, -66, 500, {.maxSpeed = 70});
-    
-    // Final position: (23.8, -64.6, -257.4)
-    chassis.moveToPose(23.8, -66, -257.4, 3000, {.forwards = false});
-    pros::delay(500);
-    
-    // Ensure arm stays in position at end of routine
-    arm.move_absolute(0, 90);
-}
-
 // void leftRed(){
 //     clamp.set_value(true);
     
@@ -644,6 +556,185 @@ void redRight(){
 
 
 
+void skills(){
+    red = true;
+    blue = false;
+    chassis.setPose(0, 0, 180);
+
+    arm.move_velocity(200);
+    pros::delay(800);
+    arm.move_velocity(0);
+    
+    chassis.moveToPose(0, 6, 180, 1500, {.forwards = false, .maxSpeed = 60, .minSpeed = 50}, false);
+    
+    arm.move_velocity(-200);
+    
+    chassis.turnToHeading(90, 1500, {.maxSpeed = 50, .minSpeed = 30});
+    chassis.moveToPoint(-17, 10,2000, {.forwards = false, .maxSpeed = 50, .minSpeed = 50}, false);
+    arm.move_velocity(0);
+    clamp.set_value(true);
+    pros::delay(200);
+
+    chassis.turnToHeading(0, 1000);
+
+    spinTop = true;
+    spinBottom = true;
+    chassis.moveToPose(-20, 33, 0, 2000, {.maxSpeed = 50, .minSpeed = 30});
+    chassis.turnToHeading(-45, 1000, {.maxSpeed = 50, .minSpeed = 30}, false);
+    chassis.moveToPose(-43, 95, 0, 2500, {.maxSpeed = 70, .minSpeed = 30});
+
+    pros::delay(1500);
+    hold = false;
+    prime = true;
+
+    chassis.moveToPoint(-38, 65, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
+
+    chassis.turnToHeading(-90, 1000, {.maxSpeed = 50, .minSpeed = 30}, false);
+    chassis.moveToPoint(-70, 65, 1500, {.maxSpeed = 50, .minSpeed = 30}, false);
+    chassis.setPose(-64, 65, chassis.getPose().theta);
+    pros::delay(100);
+    prime = false;
+    scoreStop = true;
+    spinTop = false;
+
+    score = true;
+    pros::delay(1000);
+    scoreStop = false;
+
+    chassis.moveToPoint(-55, 65, 2000, {.forwards = false, .maxSpeed = 60, .minSpeed = 50}, false);
+    score = false;
+    hold = true;
+    spinTop = true;
+    chassis.moveToPoint(-55, 65, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
+
+    chassis.turnToHeading(-180, 1000, {}, false);
+    chassis.moveToPoint(-55, -1, 2500, {.maxSpeed = 50}, false);
+    chassis.turnToHeading(-50, 1000);
+    chassis.moveToPoint(-65, 15, 1000, {.minSpeed = 40}, false);
+    chassis.turnToHeading(20, 1000);
+    chassis.moveToPoint(-75, -20, 700, {.forwards = false, .minSpeed = 40}, false);
+
+    reverse = true;
+    clamp.set_value(false);
+    pros::delay(200);
+
+
+    chassis.setPose(-52, 10, chassis.getPose().theta); // remove 180
+    pros::delay(200);
+    chassis.moveToPoint(-26, 11, 1000, {.maxSpeed = 70, .minSpeed = 50});
+    chassis.turnToHeading(-90, 1000, {.maxSpeed = 70, .minSpeed = 50});
+
+    chassis.moveToPoint(20, 11,1500, {.forwards = false, .maxSpeed = 70, .minSpeed = 50}, false);
+
+    chassis.moveToPoint(31, 11,1000, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
+    clamp.set_value(true);
+    pros::delay(200);
+    chassis.turnToHeading(0, 1000, {.maxSpeed = 70, .minSpeed = 50});
+
+    reverse = false;
+
+    spinTop = true;
+    spinBottom = true;
+    
+    chassis.moveToPose(30, 33, 0, 1500, {.maxSpeed = 70, .minSpeed = 50});
+    chassis.turnToHeading(45, 1000, {.maxSpeed = 70, .minSpeed = 50}, false);
+    chassis.moveToPose(55, 93, 0, 2000, {.maxSpeed = 70, .minSpeed = 50});
+    pros::delay(1500);
+    hold = false;
+    prime = true;
+
+    chassis.moveToPoint(50, 66, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
+
+    chassis.turnToHeading(90, 1000, {}, false);
+    chassis.moveToPoint(70, 66, 2000, {.maxSpeed = 50}, false);
+
+    prime = false;
+    scoreStop = true;
+    spinTop = false;
+
+    score = true;
+    pros::delay(1000);
+    scoreStop = false;
+
+    chassis.moveToPoint(55, 66, 1500, {.forwards = false, .maxSpeed = 50, .minSpeed = 30}, false);
+    // chassis.moveToPoint(52, 68, 1000, {}, false);
+    score = false;
+    hold = true;
+    spinTop = true;
+
+    // chassis.moveToPoint(45, 65, 500);
+
+    chassis.turnToHeading(90, 1000, {}, false);
+    chassis.moveToPoint(53, -20, 2500, {.maxSpeed = 60, .minSpeed = 40}, false);
+    chassis.turnToHeading(50, 1000);
+    chassis.moveToPoint(70, 12, 1500, {.minSpeed = 40}, false);
+    chassis.turnToHeading(-10, 1000);
+    chassis.moveToPoint(100, -30, 700, {.forwards = false, .minSpeed = 40}, false);
+
+    reverse = true;
+    pros::delay(100);
+    clamp.set_value(false);
+    pros::delay(200);
+
+    //____
+
+    chassis.setPose(91, -15, chassis.getPose().theta);
+    hold = true;
+    spinBottom = true;
+    spinTop = false;
+    chassis.moveToPoint(70, 45, 1000);
+    reverse = false;
+    holdRing = true;
+    chassis.moveToPoint(42, 55, 1500);
+
+    chassis.moveToPoint(38, 90, 1000);
+    chassis.turnToHeading(90, 1000);
+    intakeRaise.set_value(true);
+    chassis.moveToPoint(83, 100, 2500, {.maxSpeed = 60, .minSpeed = 50});
+
+    chassis.moveToPoint(18, 81, 2000, {.forwards = false, .maxSpeed = 60, .minSpeed = 30}, false);
+    clamp.set_value(true);
+    holdRing = false;
+    pros::delay(200);
+    spinTop = true;
+    spinBottom = true;
+
+    intakeRaise.set_value(false);
+
+    chassis.moveToPoint(80, 87, 3500, {.maxSpeed = 80, .minSpeed = 50}, false);
+
+    chassis.moveToPose(40, 75, -40, 3000, {.forwards = false}, false);
+
+    clamp.set_value(false);
+    intakeRaise.set_value(true);
+
+    spinBottom = false;
+    spinTop = false;
+    chassis.moveToPoint(-34, 110, 2000, {.maxSpeed = 80, .minSpeed = 70}, false);
+    hold = false;
+
+    chassis.moveToPoint(91, -15, 5000, {.forwards = false, .maxSpeed = 60, .minSpeed = 60});
+
+    pros::delay(500);
+    arm.move_velocity(200);
+    pros::delay(500);
+    arm.move_velocity(0);
+    intakeRaise.set_value(false);
+    while(imu.get_roll() > -13 && imu.get_roll() < 13){
+        pros::delay(20);
+    }
+
+    pros::delay(300);
+    chassis.cancelAllMotions();
+
+    left_motors.move_velocity(50);
+    right_motors.move_velocity(50);
+    pros::delay(1000);
+    arm.move_velocity(-200);
+    left_motors.move_velocity(0);
+    right_motors.move_velocity(0);
+    pros::delay(1500);
+}
 
     
     
@@ -853,5 +944,8 @@ void opcontrol() {
         pros::delay(20);
     }
 }
+
+
+
 
 
